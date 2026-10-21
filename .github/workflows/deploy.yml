@@ -1,0 +1,17 @@
+name: Deploy via FTP
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Upload to Hostinger
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.UCC_CMS_SERVER }}
+          username: ${{ secrets.UCC_CMS_USERNAME }}
+          password: ${{ secrets.UCC_CMS_PASSWORD }}
